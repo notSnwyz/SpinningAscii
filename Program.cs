@@ -17,11 +17,6 @@ class Program
         corners[6] = new Point3D(-1, 1, 1);
         corners[7] = new Point3D(1, 1, 1);
 
-        for (int i = 0; i < corners.Length; i++)
-        {
-            Console.WriteLine($"Corner {i+1}: {corners[i].X}, {corners[i].Y}, {corners[i].Z}");
-        }
-
         char[,] buffer = new char[height, width];
 
         for (int row = 0; row < height; row++)
@@ -32,7 +27,13 @@ class Program
             }
         }
 
-        buffer[10, 20] = '#';
+        for (int i = 0; i < corners.Length; i++)
+        {
+            int column = (int)Math.Round(width / 2 + corners[i].X * 8);
+            int row = (int)Math.Round(height / 2 + -corners[i].Y * 4);
+
+            buffer[row, column] = '#';
+        }
 
         for (int row = 0; row < height; row++)
         {
